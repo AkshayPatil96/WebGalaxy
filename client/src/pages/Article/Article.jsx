@@ -1,5 +1,4 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
@@ -70,9 +69,16 @@ const Article = () => {
         <Form.Check type="checkbox" label="𝓒𝓱𝓮𝓬𝓴 𝓶𝓮 𝓸𝓾𝓽" />
       </Form.Group>
 
-      <Button className={styles.submitBtn} variant="info" type="submit">
-      𝓢𝓾𝓫𝓶𝓲𝓽 𝓐𝓻𝓽𝓲𝓬𝓵𝓮
-      </Button>
+        <div className={styles.loginBox}>
+            <a href="/#">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Submit Article
+            </a>
+        </div>
+      
     </Form>
     </div>
     </div>

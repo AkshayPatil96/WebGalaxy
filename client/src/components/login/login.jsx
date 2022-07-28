@@ -15,7 +15,7 @@ const Login = () => {
             <input type="password" name="" required="" />
             <label>Password</label>
           </div>
-          <a style={{ margin:'0 auto'}} href="#">
+          <a  href="/#">
             <span></span>
             <span></span>
             <span></span>

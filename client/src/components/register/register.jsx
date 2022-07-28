@@ -23,7 +23,7 @@ const Register = () => {
             <input type="text" name="phone" required />
             <label>Phone</label>
           </div>
-          <a href="#">
+          <a href="/#">
             <span></span>
             <span></span>
             <span></span>
