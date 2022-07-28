@@ -1,10 +1,11 @@
-import logo from "./logo.svg";
+
 import "./App.css";
+import { MainRouter } from "./routers/mainRoutes";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello</h1>
+    <MainRouter/>
     </div>
   );
 }
