@@ -5,6 +5,7 @@ const Topic = new Schema({
     _id: { type: ObjectId},
     title:{type:String,require:true},
     subtitle:{type:String},
+    image:{type:String},
     description:{
         type:Object,
     },
