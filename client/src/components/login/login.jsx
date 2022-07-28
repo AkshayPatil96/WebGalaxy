@@ -15,12 +15,12 @@ const Login = () => {
             <input type="password" name="" required="" />
             <label>Password</label>
           </div>
-          <a href="#">
+          <a style={{ margin:'0 auto'}} href="#">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            Submit
+            Login
           </a>
         </form>
       </div>
