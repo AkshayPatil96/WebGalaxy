@@ -14,6 +14,7 @@ export const MainRouter = () => {
     <Route path='/' element={<Homepage/>}></Route>
     <Route path={`/:tech`} element={<IntroPage/>}></Route>
    </Routes>
+
    </>
   )
 }

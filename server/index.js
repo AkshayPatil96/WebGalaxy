@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
+const TopicRouter = require("./routes/Topic.routes");
 const io = new Server(server);
 
 dotenv.config();
@@ -33,6 +34,8 @@ io.on("connection", (socket) => {
 app.get("/", (req, res) => {
   res.send("<h1>Hello world</h1>");
 });
+
+app.use('/',TopicRouter)
 
 app.use(async (req, res, next) => {
   const error = new Error("Not found");

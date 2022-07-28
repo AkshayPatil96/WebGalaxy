@@ -6,13 +6,14 @@ import s from './navbar.module.css'
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-
+import { Link } from "react-router-dom";
 export const Navigation = () => {
   return (
     <div className={s.mainDiv}>
       <Navbar bg="dark" variant="dark" expand="xxl">
         <Container fluid>
-          <Navbar.Brand href="/">
+          <Link to='/'>
+          <Navbar.Brand >
             <img
               width="25px"
               src="https://cdn-user-icons.flaticon.com/70327/70327769/1659002393033.svg?token=exp=1659003294~hmac=feac30918e26a53696ca00a775984d89"
@@ -20,6 +21,7 @@ export const Navigation = () => {
             />
             <b> WebGalaxy</b>
           </Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -37,7 +39,7 @@ export const Navigation = () => {
             </Nav>
             <Form className="d-flex">
                 <NavDropdown
-                className="text-primary my-auto text-center m-3"
+                className="text-success my-auto text-center m-3"
                 title="Profile"
                 id="navbarScrollingDropdown"
               >
@@ -51,13 +53,13 @@ export const Navigation = () => {
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link
-                className="text-primary my-auto text-center m-3"
+                className="text-success my-auto text-center m-3"
                 href="#action1"
               >
                 SignUp
               </Nav.Link>
               <Nav.Link
-                className="text-primary my-auto text-center m-3"
+                className="text-success my-auto text-center m-3"
                 href="#action2"
               >
                 LogIn
