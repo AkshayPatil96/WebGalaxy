@@ -29,7 +29,7 @@ export const Homepage = () => {
     lineWidth={'2px'}
     lineColor={'green'}
     lineBorderRadius={'10px'}
-    label={<Link to={`/62e40439daed863f117b0de1`}><StyledNode>Full Stack Web Development</StyledNode></Link>}
+    label={<Link to={`/62e408ef992567b7f814a396`}><StyledNode>Full Stack Web Development</StyledNode></Link>}
   >
     <TreeNode label={<Link to='/'><StyledNode>Front end</StyledNode></Link>}>
     <TreeNode label={<Link to='/'><StyledNode>HTML</StyledNode></Link>}>
