@@ -1,3 +1,3 @@
 
 
-export const GETTOPICS ='GETTOPICS'
+export const GETTOPICS ='GETTOPICS';

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { GETTOPICS } from '../types/content'
 
 const initState={
@@ -16,13 +16,15 @@ const initState={
         type:"",
         isLoading:true,
         isError:false,
+        subTopic:[]
     }
 }
-export const ContentReducer = (state=initState,{type,payload}) => {
-
-    switch (type) {
+export const ContentReducer = (state=initState,action) => {
+  console.log(action.payload)
+    switch (action.type) {
         case GETTOPICS:
-            return{...state, }
+          return{
+            ...state,topic:action.payload }
            
         default:
             return state;

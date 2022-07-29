@@ -9,7 +9,7 @@ const TopicRouter=Router();
 TopicRouter.post('/create',async(req,res)=>{
 
    const topic  = new Topic(req.body);
-   console.log(topic)
+ 
     topic.save((err,success)=>{
         if(success){
             res.status(201).send({massage:'new topic created',success:true})
@@ -27,9 +27,11 @@ TopicRouter.get('/:_id',async(req,res)=>{
     const {_id}=req.params
 
    const topic= await Topic.findById(_id)
-
-         if(topic){
-             res.status(201).send({data:topic,success:true})
+     let id=topic._id.toString()
+   const subTopic= await Topic.find({parentId:{$in:[id]}})
+   
+         if(topic){ 
+             res.status(201).send({topic,subTopic})
          }
          else{
              console.log(err)

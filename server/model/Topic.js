@@ -6,7 +6,7 @@ const TopicSchema = new Schema({
     title:{type:String,require:true},
     image:{type:String},
     description:{
-        type:[{title:String,listPoints:[]}],
+        type:[{title:String,listPoints:[String]}],
     },
     parentId:{type:[Schema.Types.ObjectId]},
     author:{type:String,default:'WebGalaxy'},
