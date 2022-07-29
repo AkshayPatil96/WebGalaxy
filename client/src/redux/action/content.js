@@ -8,7 +8,8 @@ export const GetTopics = (id) => async (dispatch) => {
     const res = await axios.get(
          `http://localhost:8080/topic/${id}`
         );
-      let subTopic=res.data.subTopic
+      let subTopic=res.data.subTopic;
+      console.log(res.data)
         dispatch({
           type:GETTOPICS,
           payload:{

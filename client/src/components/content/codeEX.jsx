@@ -11,8 +11,8 @@ export const CodeEX = () => {
       className="p-1 mb-2 border-secondary"
     >
       <Card.Header>Code Example</Card.Header>
-      <Card.Body     >
-        <Card.Text   className="w-50 p-3 mb-2 border border-danger text-warning" >
+      <Card.Body>
+        <Card.Text className="w-50 p-3 mb-2 border border-danger text-warning">
           {`<!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +28,7 @@ export const CodeEX = () => {
 </html>`}
         </Card.Text>
         <CopyToClipboard
-            text={`<!DOCTYPE html>
+          text={`<!DOCTYPE html>
 <html lang="en">
 
 <meta charset="utf-8">
@@ -41,9 +41,9 @@ export const CodeEX = () => {
 </body>
 
 </html>`}
-          >
-           <Button variant="danger">Try This Code</Button>
-          </CopyToClipboard>
+        >
+          <Button variant="danger">Try This Code</Button>
+        </CopyToClipboard>
       </Card.Body>
     </Card>
   );
