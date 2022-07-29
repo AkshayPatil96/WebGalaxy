@@ -1,14 +1,15 @@
 .registerParent{
     height: 900px;
     width: 100%;
-    margin:0 auto;
+    margin:auto;
+    margin-top: 3%;
     padding:0;
     font-family: sans-serif;
-    background: linear-gradient(#141e30, #243b55);
+    
 }
 .loginBox {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     width: 400px;
     padding: 40px;

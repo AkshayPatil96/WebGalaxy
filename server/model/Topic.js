@@ -1,20 +1,24 @@
 
-import {model,Schema} from 'mongoose';
+ const{model,Schema} =require('mongoose');
 
 const TopicSchema = new Schema({
-    _id: { type: ObjectId},
-    index:{type:Number},
+    index:{type:Number, default:0},
     title:{type:String,require:true},
     image:{type:String},
     description:{
-        type:{subtitle:[{title:String,listPoints:[]}],},
+        type:[{title:String,listPoints:[]}],
     },
-    parentId:{type:[ObjectId]},
-    author:{type:String,require:true},
+    parentId:{type:[Schema.Types.ObjectId]},
+    author:{type:String,default:'WebGalaxy'},
     likes:{type:Number,default:0},
-    comments:{type:[ObjectId]},
-    codeEx:{type:String},
+    comments:{type:[Schema.Types.ObjectId]},
+    codeEx:{type:[]},
     list:[{head:String,subList:[]}],  
+    type:{type:String,default:'article'}
 },
 { versionKey: false,
     timestamps: true,})
+
+
+    const Topic =model('Topic',TopicSchema);
+    module.exports =Topic;

@@ -1,7 +1,9 @@
 .formDiv{
     width: 50%;
     margin: auto;
-    background: linear-gradient(#141e30, #243b55);
+    margin-top: 5%;
+    box-sizing: border-box;
+    background: transparent;
     padding: 3rem 5rem;
     border-radius: 15px;
     box-shadow: #3dff94da 6px 2px 16px 0px, #8ad7e9de -6px -2px 16px 0px;
@@ -13,7 +15,7 @@
      border-bottom-right-radius:10px
 }
 .submitBtn:hover{
-    background: #03e9f4;
+    background: #10e81a;
   color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 5px #03e9f4,

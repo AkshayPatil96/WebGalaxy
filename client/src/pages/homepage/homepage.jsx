@@ -17,7 +17,7 @@ const StyledNode = styled.a`
 
 export const Homepage = () => {
 
-let web='development'
+
   return (
    
     <div className={s.mainDiv}>
@@ -29,7 +29,7 @@ let web='development'
     lineWidth={'2px'}
     lineColor={'green'}
     lineBorderRadius={'10px'}
-    label={<Link to={`/${web}`}><StyledNode>Full Stack Web Development</StyledNode></Link>}
+    label={<Link to={`/62e39cee602ffd1e39047fd1`}><StyledNode>Full Stack Web Development</StyledNode></Link>}
   >
     <TreeNode label={<Link to='/'><StyledNode>Front end</StyledNode></Link>}>
     <TreeNode label={<Link to='/'><StyledNode>HTML</StyledNode></Link>}>
