@@ -56,11 +56,11 @@
 
 const express = require("express");
 const http = require("http");
-const { Server } = require("socket.io");
-const cors = require("cors");
-const dotenv = require("dotenv");
 const morgan = require("morgan");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const dotenv = require("dotenv");
+const { Server } = require("socket.io");
 
 const {
   addUser,
@@ -79,11 +79,17 @@ const io = new Server(server, {
   },
 });
 
+const TopicRouter = require("./routes/Topic.routes");
+
+app.use("/topic", TopicRouter);
+
+app.use(express.urlencoded({ extended: true }));
 dotenv.config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser());
+dotenv.config();
 app.use(
   cors({
     origin: [
@@ -145,6 +151,12 @@ io.on("connect", (socket) => {
       });
     }
   });
+});
+
+app.use(async (req, res, next) => {
+  const error = new Error("Not found");
+  error.status = 404;
+  next(error);
 });
 
 require("./config/database");
