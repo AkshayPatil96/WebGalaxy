@@ -62,13 +62,19 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 
-const userOps = require("./utils/user.js");
+const {
+  addUser,
+  removeUser,
+  getUser,
+  getUsersInRoom,
+} = require("./utils/user.js");
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: "http://localhost:3000",
+    credentials: true,
     methods: ["GET", "POST"],
   },
 });
@@ -89,30 +95,36 @@ app.use(
   })
 );
 
-io.on("connection", (socket) => {
-  console.log(`User Connected: ${socket.id}`);
-
-  socket.on("join", ({ name, room }) => {
-    console.log(room, name);
-    const { error, user } = userOps.addUser({ id: socket.id, name, room });
+io.on("connect", (socket) => {
+  socket.on("join", ({ name, room }, callback) => {
+    console.log("name: ", name);
+    console.log("room: ", room);
+    const { error, user } = addUser({ id: socket.id, name, room });
 
     if (error) return callback(error);
 
+    socket.join(user.room);
+
     socket.emit("message", {
       user: "admin",
-      text: `${user.name}, welcome to the room ${user.room}`,
+      text: `${user.name}, welcome to room ${user.room}.`,
     });
     socket.broadcast
       .to(user.room)
       .emit("message", { user: "admin", text: `${user.name} has joined!` });
 
-    socket.join(user.room);
+    io.to(user.room).emit("roomData", {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    });
 
     callback();
   });
 
   socket.on("sendMessage", (message, callback) => {
-    const user = userOps.getUser(socket.id);
+    const user = getUser(socket.id);
+    console.log("user: ", user);
+    console.log("message: ", message);
 
     io.to(user.room).emit("message", { user: user.name, text: message });
 
@@ -120,7 +132,18 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    console.log("User left!");
+    const user = removeUser(socket.id);
+
+    if (user) {
+      io.to(user.room).emit("message", {
+        user: "Admin",
+        text: `${user.name} has left.`,
+      });
+      io.to(user.room).emit("roomData", {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
+    }
   });
 });
 

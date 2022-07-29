@@ -62,45 +62,85 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { io } from "socket.io-client";
-
-const backendUrl = "http://localhost:8080";
+import InfoBar from "../InfoBar/InfoBar";
+import Input from "../Input/Input";
+import Messages from "../Messages/Messages";
+import TextContainer from "../TextContainer/TextContainer";
+import "./Chat.css";
 
 let socket;
 
 const Chat = () => {
-  const [searchParams, setSearcParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
+  const [users, setUsers] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
-  useEffect(() => {
-    socket = io(backendUrl);
+  const backendUrl = "http://localhost:8080/";
 
+  useEffect(() => {
     setName(searchParams.get("name"));
     setRoom(searchParams.get("room"));
 
-    socket.emit("join", { name, room }, () => {
-      //
+    socket = io(backendUrl, { withCredentials: true });
+
+    socket.emit("join", { name, room }, (error) => {
+      if (error) {
+        alert(error);
+      }
     });
 
     return () => {
-      socket.emit("disconnect");
-
-      socket.off();
+      socket.off("join");
     };
-  }, [backendUrl, searchParams]);
+  }, [searchParams, name, room]);
 
   useEffect(() => {
     socket.on("message", (message) => {
-      setMessages([...messages, message]);
+      setMessages((messages) => [...messages, message]);
     });
-  }, [messages]);
 
-  return <div>
-    
-  </div>;
+    socket.on("roomData", ({ users }) => {
+      setUsers(users);
+    });
+
+    return () => {
+      socket.off("message");
+      socket.off("roomData");
+    };
+  }, []);
+
+  console.log("message: ", message);
+  console.log("messages: ", messages);
+  console.log("users: ", users);
+
+  const sendMessage = (event) => {
+    event.preventDefault();
+
+    if (message) {
+      socket.emit("sendMessage", message, () => {
+        setMessage("");
+      });
+    }
+  };
+
+  return (
+    <div className="outerContainer">
+      <div className="container">
+        <InfoBar room={room} />
+        <Messages messages={messages} name={name} />
+        <Input
+          message={message}
+          setMessage={setMessage}
+          sendMessage={sendMessage}
+        />
+      </div>
+      <TextContainer users={users} />
+    </div>
+  );
 };
 
 export default Chat;
