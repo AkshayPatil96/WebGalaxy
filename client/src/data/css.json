@@ -2,21 +2,20 @@
     "data":[
         {
             "index": 0,
-            "title": "Full Stack Web Development",
+            "title": "CSS Introduction",
             "image": "https://www.trio.dev/hubfs/Imported_Blog_Media/ef59452016573c1462ce28b48235f462-3-2.jpg",
             "description": [
               {
-                "title": "What Is Full Stack Development?",
+                "title": "What Is CSS?",
                 "listPoints": [
-                  "What is full stack development? Full stack development is what happens when you have a software development team that approaches software development at every angle. No matter the method, neither the front-end nor back of development is neglected.",
-                  "In most cases, full stack development is what’s required to make sure the needs of both the client-side and server-side are being fulfilled. To learn more about how this happens and what full stack development is, stay tuned."
+                  "What is CSS? CSS is the language we use to style an HTML document.",
+                  "CSS describes how HTML elements should be displayed."
                 ]
               },
               {
-                "title": "Why Should You Consider a Full-Stack Development Career?",
+                "title": "Why Should You Consider CSS for styling your HTML document?",
                 "listPoints": [
-                  "Full-stack development is not only about learning various front-end and back-end technologies. It's also about understanding the two areas in sufficient detail and making communication between them easy and smooth.",
-                  "As technologies and industries evolve, Full-Stack developers will need to learn new technologies to stay abreast of the latest trends. This broad range of skills across the stack is a superpower for software developers."
+                  "With CSS, you can control the color, font, the size of text, the spacing between elements, how elements are positioned and laid out, what background images or background colors are to be used, different displays for different devices and screen sizes, and much more!"
                 ]
               }
             ],
@@ -24,7 +23,73 @@
             "author": "WebGalaxy",
             "likes": 0,
             "comments": [],
-            "codeEx": [],
+            "codeEx": ["body {","  background-color: lightblue;","}","h1 {","  color: white;","  text-align: center;","}","p {","  font-family: verdana;","  font-size: 20px;","}"],
+            "list": [
+              {
+                "head": "",
+                "subList": []
+              }
+            ],
+            "type": "Document"
+          },
+          {
+            "index": 1,
+            "title": "CSS Properties",
+            "image": "https://www.trio.dev/hubfs/Imported_Blog_Media/ef59452016573c1462ce28b48235f462-3-2.jpg",
+            "description": [
+              {
+                "title": "What are CSS Properties?",
+                "listPoints": [
+                  "Here are some of the examples:",
+                  "align-content : Specifies the alignment between the lines inside a flexible container when the items do not use all available space",
+                  "background-color : Specifies the background color of an element"
+                ]
+              },
+              {
+                "title": "",
+                "listPoints": [
+                  ""
+                ]
+              }
+            ],
+            "parentId": [],
+            "author": "WebGalaxy",
+            "likes": 0,
+            "comments": [],
+            "codeEx": ["div {","  width: 70px;","  height: 300px;","  border: 1px solid #c3c3c3;","align-content: center;","}"],
+            "list": [
+              {
+                "head": "",
+                "subList": []
+              }
+            ],
+            "type": "Document"
+          },
+          {
+            "index": 2,
+            "title": "CSS Selectors",
+            "image": "https://www.trio.dev/hubfs/Imported_Blog_Media/ef59452016573c1462ce28b48235f462-3-2.jpg",
+            "description": [
+              {
+                "title": "What are CSS selectors",
+                "listPoints": [
+                  "In CSS, selectors are patterns used to select the element(s) you want to style."
+                ]
+              },
+              {
+                "title": "Examples of CSS selectors",
+                "listPoints": [
+                  "Selector: .class",
+                  "Example: .intro",
+                  "Description: Selects all elements with class='intro'"
+                ]
+              }
+            ],
+            "parentId": [],
+            "author": "WebGalaxy",
+            "likes": 0,
+            "comments": [],
+            "codeEx": [".intro {","  background-color: yellow;","}"],
             "list": [
               {
                 "head": "",
