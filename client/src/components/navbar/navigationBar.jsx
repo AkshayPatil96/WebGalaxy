@@ -67,7 +67,7 @@ export const Navigation = () => {
               <Form.Control  
                 type="search"
                 placeholder="Search"
-                className="me-2"
+                className="me-1 "
                 aria-label="Search"
               />
               <Button variant="outline-success">Search</Button>

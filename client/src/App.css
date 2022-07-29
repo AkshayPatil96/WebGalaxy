@@ -1,4 +1,15 @@
 
+.image {
+   
+    width: 120px;
+    height: 120px;
+  
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+
+
 
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
@@ -30,9 +41,7 @@ body{
     background:#212529;  
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
     width: 100%;
-    height:100vw;
-    
-   
+
 }
 
 .circles{
@@ -44,19 +53,19 @@ body{
     overflow: hidden;
 }
 
-.circles li{
+.circles img{
     position: absolute;
     display: block;
     list-style: none;
     width: 20px;
     height: 20px;
-    background: rgba(255, 255, 255, 0.2);
+    /* background: rgba(255, 255, 255, 0.2); */
     animation: animate 25s linear infinite;
     bottom: -150px;
     
 }
 
-.circles li:nth-child(1){
+.circles img:nth-child(1){
     left: 25%;
     width: 80px;
     height: 80px;
@@ -64,7 +73,7 @@ body{
 }
 
 
-.circles li:nth-child(2){
+.circles img:nth-child(2){
     left: 10%;
     width: 20px;
     height: 20px;
@@ -72,14 +81,14 @@ body{
     animation-duration: 12s;
 }
 
-.circles li:nth-child(3){
+.circles img:nth-child(3){
     left: 70%;
     width: 20px;
     height: 20px;
     animation-delay: 4s;
 }
 
-.circles li:nth-child(4){
+.circles im:nth-child(4){
     left: 40%;
     width: 60px;
     height: 60px;
@@ -87,21 +96,21 @@ body{
     animation-duration: 18s;
 }
 
-.circles li:nth-child(5){
+.circles img:nth-child(5){
     left: 65%;
     width: 20px;
     height: 20px;
     animation-delay: 0s;
 }
 
-.circles li:nth-child(6){
+.circles img:nth-child(6){
     left: 75%;
     width: 110px;
     height: 110px;
     animation-delay: 3s;
 }
 
-.circles li:nth-child(7){
+.circles img:nth-child(7){
     left: 35%;
     width: 150px;
     height: 150px;
