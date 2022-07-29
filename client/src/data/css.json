@@ -1,0 +1,37 @@
+{
+    "data":[
+        {
+            "index": 0,
+            "title": "Full Stack Web Development",
+            "image": "https://www.trio.dev/hubfs/Imported_Blog_Media/ef59452016573c1462ce28b48235f462-3-2.jpg",
+            "description": [
+              {
+                "title": "What Is Full Stack Development?",
+                "listPoints": [
+                  "What is full stack development? Full stack development is what happens when you have a software development team that approaches software development at every angle. No matter the method, neither the front-end nor back of development is neglected.",
+                  "In most cases, full stack development is what’s required to make sure the needs of both the client-side and server-side are being fulfilled. To learn more about how this happens and what full stack development is, stay tuned."
+                ]
+              },
+              {
+                "title": "Why Should You Consider a Full-Stack Development Career?",
+                "listPoints": [
+                  "Full-stack development is not only about learning various front-end and back-end technologies. It's also about understanding the two areas in sufficient detail and making communication between them easy and smooth.",
+                  "As technologies and industries evolve, Full-Stack developers will need to learn new technologies to stay abreast of the latest trends. This broad range of skills across the stack is a superpower for software developers."
+                ]
+              }
+            ],
+            "parentId": [],
+            "author": "WebGalaxy",
+            "likes": 0,
+            "comments": [],
+            "codeEx": [],
+            "list": [
+              {
+                "head": "",
+                "subList": []
+              }
+            ],
+            "type": "Document"
+          }
+    ]
+}
