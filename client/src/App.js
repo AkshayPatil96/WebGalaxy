@@ -1,5 +1,5 @@
 // import "./App.css";
-// import Login from "./components/login/login";
+import Login from "./components/login/login";
 import Article from './pages/Article/Article';
 // import {Routes, Route} from "react-router-dom"
 import Register from "./components/register/register";
@@ -14,7 +14,7 @@ function App() {
         <Route path="/article" element={} />
       </Routes> */}
       {/* <Login /> */}
-      <Register />
+      {/* <Register /> */}
       <Article />
     </div>
   );

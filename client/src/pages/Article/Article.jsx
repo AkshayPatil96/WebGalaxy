@@ -9,11 +9,11 @@ const Article = () => {
   return (
     <div>
        <div className={styles.formDiv}>
-        <h3>𝓦𝓻𝓲𝓽𝓮 𝔂𝓸𝓾𝓻 𝓸𝔀𝓷 𝓐𝓻𝓽𝓲𝓬𝓵𝓮 𝓽𝓸 𝓱𝓮𝓵𝓹 𝓸𝓽𝓱𝓮𝓻 𝓼𝓽𝓾𝓭𝓮𝓷𝓽𝓼</h3>
+        <h3>Write your own article to help other students</h3>
         <br />
        <Form>
        <Form.Group id={styles.formInputs} style={{marginBottom:"16px" }} className="form-group" >
-            <FloatingLabel controlId="floatingSelect" label="𝓣𝓮𝓬𝓱𝓢𝓽𝓪𝓬𝓴 𝓒𝓪𝓽𝓮𝓰𝓸𝓻𝔂">
+            <FloatingLabel controlId="floatingSelect" label="Techstack category">
                 <Form.Select aria-label="Floating label select example">
                     <option>𝓞𝓹𝓮𝓷 𝓽𝓱𝓲𝓼 𝓼𝓮𝓵𝓮𝓬𝓽 𝓶𝓮𝓷𝓾</option>
                     <option value="1">𝓗𝓣𝓜𝓛</option>
@@ -63,11 +63,6 @@ const Article = () => {
         <Form.Control style={{backgroundColor:'#8ad7e9de',color:'white'}} type="file" size="lg" />
       </Form.Group>
 
-      
-
-      <Form.Group  className="mb-3" id="formGridCheckbox">
-        <Form.Check type="checkbox" label="𝓒𝓱𝓮𝓬𝓴 𝓶𝓮 𝓸𝓾𝓽" />
-      </Form.Group>
 
         <div className={styles.loginBox}>
             <a href="/#">
