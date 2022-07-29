@@ -4,9 +4,12 @@ import { MainRouter } from "./routers/mainRoutes";
 
 function App() {
   return (
-    <div className="App">
     <div className="area">
+    <div className="App">
       <ul className="circles">
+      <li></li>
+      <li></li>
+      <li></li>
       <li></li>
       <li></li>
       <li></li>

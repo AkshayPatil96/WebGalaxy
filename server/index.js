@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
   res.send("<h1>Hello world</h1>");
 });
 
-app.use('/',TopicRouter)
+app.use('/topic',TopicRouter)
 
 app.use(async (req, res, next) => {
   const error = new Error("Not found");
