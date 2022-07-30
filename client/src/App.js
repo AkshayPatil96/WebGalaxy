@@ -1,9 +1,18 @@
-
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import "./App.css";
+import { refreshToken } from "./redux/action/auth.action";
 import { MainRouter } from "./routers/mainRoutes";
-
+import "./interceptors/axios";
+import Alert from "./components/alert/Alert";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshToken());
+  }, [dispatch]);
+
   return (
     <div className="area" >
     <ul className="circles">

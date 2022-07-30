@@ -60,7 +60,7 @@
 
 import React from "react";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { io } from "socket.io-client";
 import InfoBar from "../InfoBar/InfoBar";
 import Input from "../Input/Input";
@@ -71,7 +71,10 @@ import "./Chat.css";
 let socket;
 
 const Chat = () => {
-  const [searchParams] = useSearchParams();
+  const { chatRoom } = useParams();
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  // console.log("user: ", user._id);
 
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
@@ -82,21 +85,22 @@ const Chat = () => {
   const backendUrl = "http://localhost:8080/";
 
   useEffect(() => {
-    setName(searchParams.get("name"));
-    setRoom(searchParams.get("room"));
-
     socket = io(backendUrl, { withCredentials: true });
 
-    socket.emit("join", { name, room }, (error) => {
-      if (error) {
-        alert(error);
+    socket.emit(
+      "join",
+      { id: user._id, name: user.username, room: chatRoom },
+      (error) => {
+        if (error) {
+          alert(error);
+        }
       }
-    });
+    );
 
     return () => {
       socket.off("join");
     };
-  }, [searchParams, name, room]);
+  }, [chatRoom, user._id, user.username]);
 
   useEffect(() => {
     socket.on("message", (message) => {
