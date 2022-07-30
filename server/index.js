@@ -5,6 +5,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const { Server } = require("socket.io");
+const TopicRouter = require("./routes/Topic.routes");
 
 const {
   addUser,
@@ -31,11 +32,12 @@ const TopicRouter = require("./routes/Topic.routes");
 const authRouter = require("./routes/auth.routes.js");
 // const roomRouter = require("./");
 const User = require("./model/user.model.js");
+app.use(morgan("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 dotenv.config();
 app.use(express.json());
-app.use(morgan("dev"));
+
 app.use(cookieParser());
 app.use(
   cors({
@@ -54,6 +56,16 @@ app.get("/", (req, res) => {
 app.use("/topic", TopicRouter);
 app.use("/auth", authRouter);
 // app.use("/room", roomRouter);
+
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    credentials: true,
+    methods: ["GET", "POST"],
+  },
+});
+
+app.use("/topic", TopicRouter);
 
 io.on("connect", (socket) => {
   socket.on("join", async ({ name, room }) => {

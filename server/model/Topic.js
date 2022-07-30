@@ -8,7 +8,7 @@ const TopicSchema = new Schema({
     description:{
         type:[{title:String,listPoints:[String]}],
     },
-    parentId:{type:[Schema.Types.ObjectId]},
+    parentId:{type:[String]},
     author:{type:String,default:'WebGalaxy'},
     likes:{type:Number,default:0},
     comments:{type:[Schema.Types.ObjectId]},

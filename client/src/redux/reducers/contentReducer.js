@@ -1,5 +1,5 @@
 
-import { GETTOPICS } from '../types/content'
+import { GETLISTS, GETTOPICS } from '../types/content'
 
 const initState={
     topic:{
@@ -16,8 +16,8 @@ const initState={
         type:"",
         isLoading:true,
         isError:false,
-        subTopic:[]
-    }
+    },
+    topicsList:[]
 }
 export const ContentReducer = (state=initState,action) => {
 
@@ -25,7 +25,10 @@ export const ContentReducer = (state=initState,action) => {
         case GETTOPICS:
           return{
             ...state,topic:action.payload }
-           
+           case GETLISTS:
+            return{
+                ...state,topicsList:action.payload
+            }
         default:
             return state;
     }
