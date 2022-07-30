@@ -1,4 +1,5 @@
 import React from "react";
+import img from '../../assets/Images/cosmos.png'
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -16,7 +17,7 @@ export const Navigation = () => {
           <Navbar.Brand >
             <img
               width="25px"
-              src="https://cdn-user-icons.flaticon.com/70327/70327769/1659002393033.svg?token=exp=1659003294~hmac=feac30918e26a53696ca00a775984d89"
+              src={img}
               alt=""
             />
             <b> WebGalaxy</b>

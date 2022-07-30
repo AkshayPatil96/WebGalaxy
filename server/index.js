@@ -61,6 +61,10 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const { Server } = require("socket.io");
+const TopicRouter = require("./routes/Topic.routes");
+
+
+
 
 const {
   addUser,
@@ -71,24 +75,13 @@ const {
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:3000",
-    credentials: true,
-    methods: ["GET", "POST"],
-  },
-});
-
-const TopicRouter = require("./routes/Topic.routes");
-
-app.use("/topic", TopicRouter);
+app.use(morgan("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 dotenv.config();
 app.use(express.json());
-app.use(morgan("dev"));
+
 app.use(cookieParser());
-dotenv.config();
 app.use(
   cors({
     origin: [
@@ -99,6 +92,22 @@ app.use(
     credentials: true,
   })
 );
+
+
+
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    credentials: true,
+    methods: ["GET", "POST"],
+  },
+});
+
+
+
+app.use("/topic", TopicRouter);
+
+
 
 io.on("connect", (socket) => {
   socket.on("join", ({ name, room }, callback) => {
@@ -136,6 +145,8 @@ io.on("connect", (socket) => {
     callback();
   });
 
+
+
   socket.on("disconnect", () => {
     const user = removeUser(socket.id);
 
@@ -152,11 +163,15 @@ io.on("connect", (socket) => {
   });
 });
 
+
+
 app.use(async (req, res, next) => {
   const error = new Error("Not found");
   error.status = 404;
   next(error);
 });
+
+
 
 require("./config/database");
 const PORT = process.env.PORT || 8080;

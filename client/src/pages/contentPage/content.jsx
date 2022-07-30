@@ -2,9 +2,10 @@ import s from "./content.module.css";
 import { Card, ListGroup } from "react-bootstrap";
 import { Layout } from "../../components/content/layout";
 import { CodeEX } from "../../components/content/codeEX";
+import {Link} from 'react-router-dom'
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GetList, GetTopics } from "../../redux/action/content";
+import {   GetList, GetTopics } from "../../redux/action/content";
 import { useParams } from "react-router-dom";
 export const ContentPage = () => {
   const dispatch = useDispatch();
@@ -16,8 +17,8 @@ export const ContentPage = () => {
     image,
     author,
     likes,
-    list,
-    sublist,
+    list=[],
+    subList=[],
     type,
     isLoading,
     isError,
@@ -25,11 +26,21 @@ export const ContentPage = () => {
     _id,
   } = useSelector((state) => state.ContentReducer.topic);
 
+
+const topicList = useSelector((state) => state.ContentReducer);
+
   const { id } = useParams();
+
+  const  GetsubList =()=>{
+    if(_id){
+     dispatch( GetList(_id))
+    }
+  }
 
   useEffect(() => {
     dispatch(GetTopics(id));
-  }, []);
+    GetsubList();
+  },[]);
 
   return (
     <div className={s.mainDiv}>
@@ -57,14 +68,37 @@ export const ContentPage = () => {
             alt=""
           />
         </div>
-        <CodeEX code={codeEx} />
+        {/* <CodeEX code={codeEx} /> */}
+        {
+  list.map((el,i)=>{
+    return <>
+      <div key={i}>
+        <h5>{el.head}</h5>
+      <ul>
+        {
+          el.subList.map((el,i)=>{
+            return <div key={i}>
+             <li>{el}</li>
+            </div>
+          })
+         
+        } 
+         </ul>
+        </div>
+    </>
+  })
+}         
         <ListGroup text="dark" as="ol" numbered>
-          <ListGroup.Item variant="info" as="li">
-            What is frontend web development?
+          <Link to='/62e40a4e992567b7f814a398'>
+          <ListGroup.Item as="li">
+          What Is a Front-End Developer?
           </ListGroup.Item>
+          </Link>
+          <Link to='/'>
           <ListGroup.Item as="li">
             What is backend web development?
           </ListGroup.Item>
+          </Link>
           <ListGroup.Item as="li">
             How to become a full-stack web developer
           </ListGroup.Item>

@@ -1,4 +1,4 @@
-
+import img from '../../assets/Images/cosmos.png'
 import s from './homepage.module.css'
 import { Tree, TreeNode } from 'react-organizational-chart';
 import styled from 'styled-components';
@@ -21,7 +21,7 @@ export const Homepage = () => {
   return (
    
     <div className={s.mainDiv}>
-     <div> <img className={s.image} width='100px' src="https://cdn-user-icons.flaticon.com/70327/70327769/1659002393033.svg?token=exp=1659003294~hmac=feac30918e26a53696ca00a775984d89" alt="" /></div>
+     <div> <img className={s.image} width='100px' src={img} alt="" /></div>
      
       <h1>𝓡𝓮𝓪𝓭 𝓦𝓻𝓲𝓽𝓮 𝓓𝓲𝓼𝓬𝓾𝓼𝓼</h1>
       <br />
@@ -29,7 +29,7 @@ export const Homepage = () => {
     lineWidth={'2px'}
     lineColor={'green'}
     lineBorderRadius={'10px'}
-    label={<Link to={`/62e408ef992567b7f814a396`}><StyledNode>Full Stack Web Development</StyledNode></Link>}
+    label={<Link to={`/62e412e1dec27200b88d5b6e`}><StyledNode>Full Stack Web Development</StyledNode></Link>}
   >
     <TreeNode label={<Link to='/'><StyledNode>Front end</StyledNode></Link>}>
     <TreeNode label={<Link to='/'><StyledNode>HTML</StyledNode></Link>}>
