@@ -5,7 +5,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const { Server } = require("socket.io");
-const TopicRouter = require("./routes/Topic.routes");
+// const TopicRouter = require("./routes/Topic.routes");
 
 const {
   addUser,
@@ -16,17 +16,17 @@ const {
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: [
-      "http://localhost:3000",
-      "http://localhost:3001",
-      "http://localhost:3002",
-    ],
-    credentials: true,
-    methods: ["GET", "POST"],
-  },
-});
+// const io = new Server(server, {
+//   cors: {
+//     origin: [
+//       "http://localhost:3000",
+//       "http://localhost:3001",
+//       "http://localhost:3002",
+//     ],
+//     credentials: true,
+//     methods: ["GET", "POST"],
+//   },
+// });
 
 const TopicRouter = require("./routes/Topic.routes");
 const authRouter = require("./routes/auth.routes.js");
