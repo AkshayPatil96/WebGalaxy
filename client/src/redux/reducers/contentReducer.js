@@ -20,7 +20,7 @@ const initState={
     }
 }
 export const ContentReducer = (state=initState,action) => {
-  console.log(action.payload)
+
     switch (action.type) {
         case GETTOPICS:
           return{

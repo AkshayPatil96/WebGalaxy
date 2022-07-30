@@ -26,10 +26,13 @@ TopicRouter.get('/:_id',async(req,res)=>{
 
     const {_id}=req.params
     const subTopic= await Topic.find({parentId:{$in:["62e408ef992567b7f814a396"]}})
-    console.log(subTopic)
+    
    const topic= await Topic.findById(_id)
+   console.log(topic)
          if(topic){ 
+       
              res.status(201).send({topic,subTopic})
+
          }
          else{
              res.status(401).send({massage:'error occurred',success:false})
