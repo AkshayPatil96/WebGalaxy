@@ -1,59 +1,3 @@
-// const express = require("express");
-// const app = express();
-// const http = require("http");
-// const morgan = require("morgan");
-// const cors = require("cors");
-// const cookieParser = require("cookie-parser");
-// const dotenv = require("dotenv");
-// const server = http.createServer(app);
-// const { Server } = require("socket.io");
-// const io = new Server(server,{
-//   cors:{
-//     origin: 'https://localhost:3000',
-//   }
-// });
-
-// dotenv.config();
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
-// app.use(morgan("dev"));
-// app.use(cookieParser());
-// dotenv.config();
-// app.use(
-//   cors({
-//     origin: [
-//       "http://localhost:3000",
-//       "http://localhost:3001",
-//       "http://localhost:3002",
-//     ],
-//     credentials: true,
-//   })
-// );
-
-// io.on("connection", (socket) => {
-//   console.log(`User connected: ${socket.id}`);
-// });
-
-// app.get("/", (req, res) => {
-//   res.send("<h1>Hello world</h1>");
-// });
-
-// app.use(async (req, res, next) => {
-//   const error = new Error("Not found");
-//   error.status = 404;
-//   next(error);
-// });
-
-// app.use((err, req, res, next) => {
-//   res.status(err.status || 500);
-//   res.send({
-//     error: {
-//       status: err.status || 500,
-//       message: err.message,
-//     },
-//   });
-// });
-
 const express = require("express");
 const http = require("http");
 const morgan = require("morgan");
@@ -61,10 +5,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const { Server } = require("socket.io");
-const TopicRouter = require("./routes/Topic.routes");
-
-
-
+// const TopicRouter = require("./routes/Topic.routes");
 
 const {
   addUser,
@@ -75,6 +16,22 @@ const {
 
 const app = express();
 const server = http.createServer(app);
+// const io = new Server(server, {
+//   cors: {
+//     origin: [
+//       "http://localhost:3000",
+//       "http://localhost:3001",
+//       "http://localhost:3002",
+//     ],
+//     credentials: true,
+//     methods: ["GET", "POST"],
+//   },
+// });
+
+const TopicRouter = require("./routes/Topic.routes");
+const authRouter = require("./routes/auth.routes.js");
+// const roomRouter = require("./");
+const User = require("./model/user.model.js");
 app.use(morgan("dev"));
 
 app.use(express.urlencoded({ extended: true }));
@@ -93,7 +50,12 @@ app.use(
   })
 );
 
-
+app.get("/", (req, res) => {
+  res.send("Hello!");
+});
+app.use("/topic", TopicRouter);
+app.use("/auth", authRouter);
+// app.use("/room", roomRouter);
 
 const io = new Server(server, {
   cors: {
@@ -103,36 +65,28 @@ const io = new Server(server, {
   },
 });
 
-
-
 app.use("/topic", TopicRouter);
 
-
-
 io.on("connect", (socket) => {
-  socket.on("join", ({ name, room }, callback) => {
-    console.log("name: ", name);
-    console.log("room: ", room);
-    const { error, user } = addUser({ id: socket.id, name, room });
+  socket.on("join", async ({ name, room }) => {
+    const user = await User.findOne({ username: name });
+    console.log("user: ", user);
 
-    if (error) return callback(error);
-
-    socket.join(user.room);
+    socket.join(room);
 
     socket.emit("message", {
       user: "admin",
-      text: `${user.name}, welcome to room ${user.room}.`,
+      text: `${user.username}, welcome to room ${room}.`,
     });
+
     socket.broadcast
-      .to(user.room)
-      .emit("message", { user: "admin", text: `${user.name} has joined!` });
+      .to(room)
+      .emit("message", { user: "admin", text: `${user.username} has joined!` });
 
-    io.to(user.room).emit("roomData", {
-      room: user.room,
-      users: getUsersInRoom(user.room),
+    io.to(room).emit("roomData", {
+      room: room,
+      users: getUsersInRoom(room),
     });
-
-    callback();
   });
 
   socket.on("sendMessage", (message, callback) => {
@@ -144,8 +98,6 @@ io.on("connect", (socket) => {
 
     callback();
   });
-
-
 
   socket.on("disconnect", () => {
     const user = removeUser(socket.id);
@@ -163,15 +115,21 @@ io.on("connect", (socket) => {
   });
 });
 
-
-
 app.use(async (req, res, next) => {
   const error = new Error("Not found");
   error.status = 404;
   next(error);
 });
 
-
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.send({
+    error: {
+      status: err.status || 500,
+      message: err.message,
+    },
+  });
+});
 
 require("./config/database");
 const PORT = process.env.PORT || 8080;

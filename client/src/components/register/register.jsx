@@ -1,58 +1,115 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styles from "./register.module.css"
-import  axios  from 'axios';
+
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { refreshToken, register } from "../../redux/action/auth.action";
+import styles from "./register.module.css";
 
 const Register = () => {
-  const navigate = useNavigate()
-  const [user, setUser] = useState({});
+  const initState = {
+    username: "",
+    number: "",
+    email: "",
+    password: "",
+  };
 
-  const handleChange=(e)=>{
-      let {name, value} = e.target ;
-      setUser({
-        ...user,
-        [name] : value
-      })
-  }
+  const [userRegister, setUserRegister] = useState(initState);
 
-  const handleRegister=(e)=>{
-    e.preventDefault();
-    let payload = JSON.stringify(user);
-    console.log("payload: ", payload);
-    axios.post("http://localhost:8080/auth/register", payload)
-      .then((res) => res.json())
-      .then((res) => navigate("/"))
-      .catch((err) => console.log(err));
-  }
+  const { username, number, email, password } = userRegister;
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const { auth, alert } = useSelector((state) => state);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserRegister({
+      ...userRegister,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // dispatch(login(userLogin));
+    try {
+      const res = await axios.post("/auth/register", userRegister);
+
+      const data = await res.data;
+      console.log("data: ", data);
+      if (data) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        navigate("/");
+      }
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+
+  // useEffect(() => {
+  //   dispatch(refreshToken());
+  //   if (auth.access_token) {
+  //     navigate("/");
+  //   }
+  // }, [auth, navigate, dispatch]);
+
 
   return (
     <div className={styles.registerParent}>
       <div className={styles.loginBox}>
         <h2>Register</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className={styles.userBox}>
-            <input onChange={handleChange} type="text" name="email" required />
+            <input
+              type="text"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              required
+            />
             <label>Email</label>
           </div>
           <div className={styles.userBox}>
-            <input onChange={handleChange} type="text" name="username" required />
+            <input
+              type="text"
+              name="username"
+              value={username}
+              onChange={handleChange}
+              required
+            />
             <label>Username</label>
           </div>
           <div className={styles.userBox}>
-            <input onChange={handleChange} type="password" name="password" required />
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              required
+            />
             <label>Password</label>
           </div>
           <div className={styles.userBox}>
-            <input onChange={handleChange} type="number" name="phone" required />
+            <input
+              type="text"
+              name="number"
+              value={number}
+              onChange={handleChange}
+              required
+            />
             <label>Phone</label>
           </div>
-          <Link onClick={handleRegister} to="/login">
+          <button className={styles.a}>
             <span></span>
             <span></span>
             <span></span>
             <span></span>
             Sign Up
-          </Link>
+          </button>
         </form>
       </div>
     </div>

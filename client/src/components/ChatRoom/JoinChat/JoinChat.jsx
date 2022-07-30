@@ -10,14 +10,7 @@ const JoinChat = () => {
     <div className="joinOuterContainer">
       <div className="joinInnerContainer">
         <h3 className="heading">Create New Chat Room</h3>
-        <div>
-          <input
-            placeholder="Name"
-            className="joinInput"
-            type="text"
-            onChange={(event) => setName(event.target.value)}
-          />
-        </div>
+
         <div>
           <input
             placeholder="Room"
@@ -27,8 +20,8 @@ const JoinChat = () => {
           />
         </div>
         <Link
-          onClick={(e) => (!name || !room ? e.preventDefault() : null)}
-          to={`/chat?name=${name}&room=${room}`}
+          onClick={(e) => (!room ? e.preventDefault() : null)}
+          to={`/chat/${room}`}
         >
           <button className={"button mt-20"} type="submit">
             Create Room
